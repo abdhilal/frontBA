@@ -13,13 +13,13 @@ export const useAuth = () => {
   const loginMutation = useMutation({
     mutationFn: (credentials) =>
       apiClient
-        .post("/auth/login", {
+        .post("http://localhost:8000/api/api-token-auth/", {
             username:credentials.username,
             password:credentials.password,
         })
         .then((res) => res.data),
     onSuccess: (data) => {
-      setToken(data.accessToken);
+      setToken(data.token);
       navigate("/");
       toast.success('Login successful!')
     },
